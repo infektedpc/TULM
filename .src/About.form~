@@ -1,0 +1,30 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,53,29)
+  Text = ("About - TULM")
+  { PictureBox1 PictureBox
+    MoveScaled(2,6,8,8)
+    Expand = True
+    Picture = Picture["launch-icon.png"]
+    Stretch = True
+    AutoResize = True
+  }
+  { Label1 Label
+    MoveScaled(1,0,55,5)
+    Font = Font["+3"]
+    Expand = True
+    AutoResize = True
+    Text = ("TULM - The Universal Launcher Maker")
+  }
+  { TextArea1 TextArea
+    MoveScaled(12,5,40,17)
+    Enabled = False
+    Text = ("Go Frack Yourself...")
+    Wrap = True
+  }
+  { Button_close Button
+    MoveScaled(38,23,14,4)
+    Text = ("Close")
+  }
+}

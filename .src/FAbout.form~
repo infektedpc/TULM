@@ -1,0 +1,31 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,61,29)
+  Text = ("About - TULM")
+  Resizable = False
+  { PictureBox1 PictureBox
+    MoveScaled(2,7,8,8)
+    Expand = True
+    Picture = Picture["launch-icon.png"]
+    Stretch = True
+    AutoResize = True
+  }
+  { Label1 Label
+    MoveScaled(1,1,55,5)
+    Font = Font["+3"]
+    Expand = True
+    AutoResize = True
+    Text = ("TULM - The Universal Launcher Maker")
+  }
+  { TextArea1 TextArea
+    MoveScaled(12,6,48,17)
+    Text = ("TULM is a very easy to use launcher maker designed to work with any desktop that follows the freedesktop.org standards. TULM is very easy and simple to use just fill out the launcher info and save.\n\nTULM was created by Tim Horrell & Joel Horrell")
+    ReadOnly = True
+    Wrap = True
+  }
+  { Button_close Button
+    MoveScaled(46,24,14,4)
+    Text = ("Close")
+  }
+}

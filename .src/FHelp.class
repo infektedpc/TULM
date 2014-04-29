@@ -1,0 +1,14 @@
+' Gambas class file
+
+
+Public Sub Form_Open()
+
+  FHelp.center
+
+End
+
+Public Sub Button_Close_Click()
+
+  FHelp.close
+
+End

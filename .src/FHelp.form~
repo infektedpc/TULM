@@ -1,0 +1,18 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,61,29)
+  Text = ("Help - TULM")
+  Resizable = False
+  { !TextArea1 TextArea
+    MoveScaled(1,1,59,22)
+    #Public = True
+    Text = ("The Universal Launcher Maker Help File...\n\nto use autofill feature first select path of excutable file\n\n.dekstop files are saved in /home/USERNAME/.local/share/applications\n\nTULM will only open TULM made launchers to prevent corruption of other launchers made without tulm\n")
+    ReadOnly = True
+    Wrap = True
+  }
+  { Button_Close Button
+    MoveScaled(49,24,11,4)
+    Text = ("Close")
+  }
+}

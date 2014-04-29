@@ -1,0 +1,244 @@
+' Gambas class file
+
+Public Sub _new()
+  
+End
+
+Public SelectedImage As String = ""
+Public Categories As String = ""
+
+Public Sub Form_Open()
+  
+  FMain.Center
+  
+End
+
+Public Sub Button_Open_Click()
+  
+  Open_Desktop_File
+  
+End
+
+Public Sub Open_Desktop_File()
+  
+  Dim Temp_File As String[]
+  Dim Temp_File_Line As String = ""
+  Dim Temp_Categories As String[]
+  Dim Temp_Temp_Categories_Line As String = ""
+  
+  'Open File Dialog
+  Dialog.Title = "Open .Desktop File"
+  'Dialog.filter = [""]
+  'Set Default Path
+  Dialog.Path = "/home/" & System.User.Name & "/.local/share/applications"
+  If Dialog.OpenFile() Then Return
+  'Check For TULM Comment
+  If InStr(file.Load(Dialog.path), "#Created With Tulm 0.1") = 0 Then
+    Message.Info("TULM can only open launchers created with TULM.")
+  Else
+    'Clear Categories
+    ListBox_Categories.Clear
+    
+    'Split File into array
+    Temp_File = Split(file.Load(Dialog.path), "\n", Null, True, False)
+    
+    'Go Through "Temp File" Line by Line
+    For Each Temp_File_Line In Temp_File
+      
+      'Check For Name
+      If InStr(Temp_File_Line, "Name") = 1 Then
+        TextBox_Name.text = Mid$(Temp_File_Line, 6)
+      Endif
+      
+      'Check for Comment
+      If InStr(Temp_File_Line, "Comment") = 1 Then
+        TextBox_Comment.text = Mid$(Temp_File_Line, 9)
+      Endif
+      
+      'Check for Exec
+      If InStr(Temp_File_Line, "Exec") = 1 Then
+        TextBox_EXEC.text = Mid$(Temp_File_Line, 6)
+      Endif
+      
+      'Check for Icon
+      If InStr(Temp_File_Line, "Icon") = 1 Then
+        SelectedImage = Mid$(Temp_File_Line, 6)
+        If Exist(SelectedImage) Then
+          PictureBox1.picture = picture.Load(SelectedImage)
+        Else
+          'RELOAD THE DEFALT PICTURE HERE
+        Endif
+      Endif
+      
+      'Check For Categories
+      If InStr(Temp_File_Line, "Categories") = 1 Then
+        Temp_Categories = Split(Mid$(Temp_File_Line, 12), ";", Null, True, True)
+        For Each Temp_File_Line In Temp_Categories
+          ListBox_Categories.Add(Temp_File_Line)
+        Next
+      Endif
+      
+      'Check For Terminal
+      If InStr(Temp_File_Line, "Terminal") = 1 Then
+        If Mid$(Temp_File_Line, 10) = "false"
+          CheckBox_Terminal.Value = False
+        Else
+          CheckBox_Terminal.Value = True
+        Endif
+      Endif
+      
+      'Check For StartupNotify
+      If InStr(Temp_File_Line, "StartupNotify") = 1 Then
+        If Mid$(Temp_File_Line, 15) = "false"
+          CheckBox_StartupNotify.Value = False
+        Else
+          CheckBox_StartupNotify.Value = True
+        Endif
+      Endif
+      
+    Next
+    'Clean
+    Temp_File.Clear
+  Catch
+    Message.Error("Error: " & Dialog.Path & "\n" & Error.Text)
+  Endif
+  
+End
+
+Public Sub Button_Save_Click()
+  
+  If Not TextBox_Name.Text = "" Then
+    'Check if file Exist
+    If Exist("/home/" & System.User.Name & "/.local/share/applications/" & TextBox_Name.Text & ".desktop") Then
+      If Message.Question("File already exist, Replace file?", "Yes", "No") = 1 Then
+        Create_Desktop_File
+      Endif
+    Else
+      Create_Desktop_File
+    Endif
+  Else
+    Message.Info("Launcher has not been given a name")
+  Endif
+  
+End
+
+Public Sub Create_Desktop_File()
+  
+  Dim StartupNotify_Boolean As Boolean = CheckBox_StartupNotify.Value
+  Dim Terminal_Boolean As Boolean = CheckBox_Terminal.Value
+  Dim Temp_File_Name As String = Lower$(TextBox_Name.Text)
+  
+  Temp_File_Name = Trim$(Temp_File_Name)
+  'String Categories From ListBox_Categories
+  Categories = ListBox_Categories.List.Join(";")
+  'Save .desktop
+  file.Save("/home/" & System.User.Name & "/.local/share/applications/" & Temp_File_Name & ".desktop", "#Created With Tulm 0.1\n" & "[Desktop Entry]\n" & "Version=1.0\n" & "Name=" & TextBox_Name.text & "\n" & "Comment=" & TextBox_Comment.text & "\n" & "Exec=" & TextBox_EXEC.Text & "\n" & "Icon=" & SelectedImage & "\n" & "Categories=" & Categories & "\n" & "Terminal=" & Str$(Terminal_Boolean) & "\n" & "Type=Application" & "\n" & "StartupNotify=" & Str$(StartupNotify_Boolean))
+  'File Save MSG
+  Message.Info("File " & TextBox_Name.Text & ".desktop Created!")
+  'Clean
+  PictureBox1.Picture = Null
+  SelectedImage = ""
+  Categories = ""
+  TextBox_Name.Clear
+  TextBox_Comment.Clear
+  TextBox_EXEC.Clear
+  ComboBox_Categories.Clear
+  ListBox_Categories.Clear
+Catch
+  Message.Error("Error: " & Error.Text)
+  
+End
+
+Public Sub PictureBox1_MouseDown()
+  
+  SelectedImage = ""
+  'Open File Dialog
+  Dialog.Title = "Select Image"
+  Dialog.filter = ["*.jpg;*.jpeg;*.png;*.bmp", "All Files", "*.jpg;*.jpeg", "Joint Photographic Expert Group", "*.png", "Portable Network Graphics", "*.bmp", "Bitmap"]
+  'Set Default Path
+  If Exist("/home/" & System.User.Name & "/Pictures") Then
+    Dialog.Path = "/home/" & System.User.Name & "/Pictures"
+  Endif
+  If Dialog.OpenFile() Then Return
+  'Check File Ext
+  If file.ext(Dialog.path) = "jpg" Or file.ext(Dialog.path) = "jpeg" Or file.ext(Dialog.path) = "png" Or file.ext(Dialog.path) = "bmp" Then
+    PictureBox1.picture = picture.Load(Dialog.path)
+    SelectedImage = Dialog.path
+  Else
+    Message.info("Please select a supported image type.")
+  Endif
+Catch
+  Message.Error("Error: " & Dialog.path & gb.CrLf & Error.Text)
+  
+End
+
+Public Sub Button_EXEC_Click()
+  
+  'Open File Dialog
+  Dialog.Title = "Select File"
+  Dialog.filter = [""]
+  'Set Default Path
+    If Exist("/home/" & System.User.Name) Then
+    Dialog.Path = "/home/" & System.User.Name
+  Endif
+  If Dialog.OpenFile() Then Return
+  'Message("File Dir:" & File.Dir(Dialog.Path))
+  'Message("File Base name:" & File.BaseName(Dialog.Path))
+  TextBox_Name.text = File.BaseName(Dialog.Path)
+  TextBox_EXEC.text = Dialog.path
+Catch
+  Message.Info("Cannot load path: " & Dialog.path & gb.CrLf & Error.Text)
+  
+End
+
+Public Sub Button_Add_Category_Click()
+  
+  If Not ComboBox_Categories.Text = "" Then
+    ListBox_Categories.Add(ComboBox_Categories.Text)
+    ComboBox_Categories.Text = ""
+  Endif
+  
+End
+
+Public Sub Button_Remove_Category_Click()
+
+  If Not ListBox_Categories.Text = "" Then
+    ListBox_Categories.Remove(ListBox_Categories.Index)
+  Endif
+  
+End
+
+Public Sub MenuFile_Open_Click()
+  
+  Open_Desktop_File
+  
+End
+
+Public Sub MenuFile_Save_Click()
+  
+  If Not TextBox_Name.Text = "" Then
+    'Check if file Exist
+    If Exist("/home/" & System.User.Name & "/.local/share/applications/" & TextBox_Name.Text & ".desktop") Then
+      If Message.Question("File already exist, Replace file?", "Yes", "No") = 1 Then
+        Create_Desktop_File
+      Endif
+    Else
+      Create_Desktop_File
+    Endif
+  Else
+    Message.Info("Launcher has not been given a name")
+  Endif
+  
+End
+
+Public Sub MenuAbout_Help_Click()
+  
+  FHelp.Show
+  
+End
+
+Public Sub MenuAbout_About_Click()
+  
+  FAbout.show
+  
+End

@@ -1,0 +1,114 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,44,56)
+  Text = ("TULM - The Universal Launcher Maker")
+  Icon = Picture["launch-icon.png"]
+  Resizable = False
+  { MenuFile Menu
+    Text = ("File")
+    { MenuFile_Open Menu
+      Text = ("Open")
+      Picture = Picture["icon:/16/open"]
+      Shortcut = "Ctrl+O"
+    }
+    { MenuFile_Save Menu
+      Text = ("Save")
+      Shortcut = "Ctrl+S"
+    }
+  }
+  { MenuAbout Menu
+    Text = ("About")
+    { MenuAbout_Help Menu
+      Text = ("Help")
+      Shortcut = "Ctrl+H"
+    }
+    { MenuAbout_About Menu
+      Text = ("About")
+      Shortcut = "Ctrl+A"
+    }
+  }
+  { Label_Name Label
+    MoveScaled(1,2,9,4)
+    Text = ("Name")
+  }
+  { Label_Description Label
+    MoveScaled(1,8,10,4)
+    Text = ("Description")
+  }
+  { Label_Excutable Label
+    MoveScaled(1,14,9,4)
+    Text = ("Excutable")
+  }
+  { Label_Categories Label
+    MoveScaled(1,20,10,4)
+    Text = ("Categories")
+  }
+  { Label_Icon Label
+    MoveScaled(4,27,4,4)
+    Text = ("Icon")
+  }
+  { TextBox_Name TextBox
+    MoveScaled(13,2,24,4)
+    ToolTip = ("Enter name of the application.")
+  }
+  { TextBox_Comment TextBox
+    MoveScaled(13,8,24,4)
+    ToolTip = ("Enter a short description of the application.")
+  }
+  { TextBox_EXEC TextBox
+    MoveScaled(13,14,24,4)
+    ToolTip = ("Enter path of the application.")
+  }
+  { Button_EXEC Button
+    MoveScaled(38,14,5,4)
+    ToolTip = ("Browse for the application.")
+    Text = ("...")
+  }
+  { ComboBox_Categories ComboBox
+    MoveScaled(13,20,24,4)
+    List = [("Accessibilty"), ("Audio"), ("AudioVideo"), ("Video"), ("Development"), ("Education"), ("Game"), ("Graphics"), ("Network"), ("Office"), ("Other"), ("Programming"), ("Science"), ("Settings"), ("System"), ("Utility")]
+  }
+  { Button_Add_Category Button
+    MoveScaled(38,20,5,4)
+    ToolTip = ("Add Category")
+    Picture = Picture["icon:/16/apply"]
+  }
+  { Button_Remove_Category Button
+    MoveScaled(38,26,5,4)
+    ToolTip = ("Remove Category")
+    Picture = Picture["icon:/16/remove"]
+  }
+  { PictureBox1 PictureBox
+    MoveScaled(2,31,8,8)
+    ToolTip = ("Click to browse for icon.")
+    Picture = Picture["launch-icon.png"]
+    Stretch = True
+    Border = Border.Sunken
+  }
+  { ListBox_Categories ListBox
+    MoveScaled(13,26,24,16)
+  }
+  { CheckBox_StartupNotify CheckBox
+    MoveScaled(8,43,16,4)
+    ToolTip = ("If checked, it is KNOWN that the application will send a \"remove\" message when started with the DESKTOP_STARTUP_ID environment variable set.")
+    Text = ("Startup Notify")
+  }
+  { CheckBox_Terminal CheckBox
+    MoveScaled(26,43,11,4)
+    ToolTip = ("Whether the program runs in a terminal window. ")
+    Text = ("Terminal")
+  }
+  { Button_Open Button
+    MoveScaled(2,48,12,4)
+    ToolTip = ("Open existing Launcher (.desktop)")
+    Text = ("Open")
+    Picture = Picture["icon:/16/open"]
+  }
+  { Button_Save Button
+    MoveScaled(30,48,12,4)
+    ToolTip = ("Save the launcher.")
+    Text = ("Save")
+    Picture = Picture["icon:/16/save"]
+  }
+}
