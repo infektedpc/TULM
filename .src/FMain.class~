@@ -6,6 +6,10 @@ End
 
 Public SelectedImage As String = ""
 Public Categories As String = ""
+Public MSG_TULM_Only As String = "TULM can only open launchers created with TULM."
+Public MSG_Desktop_File_Exist As String = "File already exist, Replace file?"
+Public MSG_No_File_Name As String = "Launcher has not been given a name"
+Public MSG_Unsupported_Image_Type As String = "Please select a supported image type."
 
 Public Sub Form_Open()
   
@@ -34,7 +38,7 @@ Public Sub Open_Desktop_File()
   If Dialog.OpenFile() Then Return
   'Check For TULM Comment
   If InStr(file.Load(Dialog.path), "#Created With Tulm 0.1") = 0 Then
-    Message.Info("TULM can only open launchers created with TULM.")
+    Message.Info(MSG_TULM_Only)
   Else
     'Clear Categories
     ListBox_Categories.Clear
@@ -110,14 +114,14 @@ Public Sub Button_Save_Click()
   If Not TextBox_Name.Text = "" Then
     'Check if file Exist
     If Exist("/home/" & System.User.Name & "/.local/share/applications/" & TextBox_Name.Text & ".desktop") Then
-      If Message.Question("File already exist, Replace file?", "Yes", "No") = 1 Then
+      If Message.Question(MSG_Desktop_File_Exist, "Yes", "No") = 1 Then
         Create_Desktop_File
       Endif
     Else
       Create_Desktop_File
     Endif
   Else
-    Message.Info("Launcher has not been given a name")
+    Message.Info(MSG_No_File_Name)
   Endif
   
 End
@@ -156,8 +160,8 @@ Public Sub PictureBox1_MouseDown()
   Dialog.Title = "Select Image"
   Dialog.filter = ["*.jpg;*.jpeg;*.png;*.bmp", "All Files", "*.jpg;*.jpeg", "Joint Photographic Expert Group", "*.png", "Portable Network Graphics", "*.bmp", "Bitmap"]
   'Set Default Path
-  If Exist("/Pictures") Then
-    Dialog.Path = "/Pictures"
+  If Exist("/home/" & System.User.Name & "/Pictures") Then
+    Dialog.Path = "/home/" & System.User.Name & "/Pictures"
   Endif
   If Dialog.OpenFile() Then Return
   'Check File Ext
@@ -165,10 +169,10 @@ Public Sub PictureBox1_MouseDown()
     PictureBox1.picture = picture.Load(Dialog.path)
     SelectedImage = Dialog.path
   Else
-    Message.info("Please select a supported image type.")
+    Message.info(MSG_Unsupported_Image_Type)
   Endif
 Catch
-  Message.Error("Error: " & Dialog.path & gb.CrLf & Error.Text)
+  Message.Error("Error: " & Dialog.path & "\n" & Error.Text)
   
 End
 
@@ -178,16 +182,14 @@ Public Sub Button_EXEC_Click()
   Dialog.Title = "Select File"
   Dialog.filter = [""]
   'Set Default Path
-    If Exist("/home") Then
-    Dialog.Path = "/home"
+    If Exist("/home/" & System.User.Name) Then
+    Dialog.Path = "/home/" & System.User.Name
   Endif
   If Dialog.OpenFile() Then Return
-  'Message("File Dir:" & File.Dir(Dialog.Path))
-  'Message("File Base name:" & File.BaseName(Dialog.Path))
   TextBox_Name.text = File.BaseName(Dialog.Path)
   TextBox_EXEC.text = Dialog.path
 Catch
-  Message.Info("Cannot load path: " & Dialog.path & gb.CrLf & Error.Text)
+  Message.Error("Error: " & Dialog.path & "\n" & Error.Text)
   
 End
 
@@ -219,14 +221,14 @@ Public Sub MenuFile_Save_Click()
   If Not TextBox_Name.Text = "" Then
     'Check if file Exist
     If Exist("/home/" & System.User.Name & "/.local/share/applications/" & TextBox_Name.Text & ".desktop") Then
-      If Message.Question("File already exist, Replace file?", "Yes", "No") = 1 Then
+      If Message.Question(MSG_Desktop_File_Exist, "Yes", "No") = 1 Then
         Create_Desktop_File
       Endif
     Else
       Create_Desktop_File
     Endif
   Else
-    Message.Info("Launcher has not been given a name")
+    Message.Info(No_File_Name_MSG)
   Endif
   
 End

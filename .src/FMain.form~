@@ -14,6 +14,7 @@
     }
     { MenuFile_Save Menu
       Text = ("Save")
+      Picture = Picture["icon:/16/save"]
       Shortcut = "Ctrl+S"
     }
   }
@@ -21,10 +22,12 @@
     Text = ("About")
     { MenuAbout_Help Menu
       Text = ("Help")
+      Picture = Picture["icon:/16/help"]
       Shortcut = "Ctrl+H"
     }
     { MenuAbout_About Menu
       Text = ("About")
+      Picture = Picture["icon:/16/info"]
       Shortcut = "Ctrl+A"
     }
   }
@@ -65,8 +68,9 @@
     ToolTip = ("Browse for the application.")
     Text = ("...")
   }
-  { ComboBox_Categories ComboBox
+  { !ComboBox_Categories ComboBox
     MoveScaled(13,20,24,4)
+    #Public = True
     List = [("Accessibilty"), ("Audio"), ("AudioVideo"), ("Video"), ("Development"), ("Education"), ("Game"), ("Graphics"), ("Network"), ("Office"), ("Other"), ("Programming"), ("Science"), ("Settings"), ("System"), ("Utility")]
   }
   { Button_Add_Category Button
