@@ -1,0 +1,63 @@
+' Gambas class file
+
+' 
+Public Sub Form_Open()
+
+  FOnly.center
+
+End
+
+Public Sub Button_Ok_Click()
+
+  FOnly.Close
+
+End
+
+
+Public Sub CheckBox_All_Click()
+
+  If CheckBox_All.value = True Then
+    'Check all Checkboxes
+    CheckBox_Unity.Value = True
+    CheckBox_Cinnamon.Value = True
+    CheckBox_KDE.Value = True
+    CheckBox_Gnome.Value = True
+    CheckBox_RazorQT.Value = True
+    CheckBox_MATE.Value = True
+    CheckBox_XFCE.Value = True
+    CheckBox_Pantheon.Value = True
+    CheckBox_LXDE.Value = True
+    'Disable all Checkboxes
+    CheckBox_Unity.Enabled = False
+    CheckBox_Cinnamon.Enabled = False
+    CheckBox_KDE.Enabled = False
+    CheckBox_Gnome.Enabled = False
+    CheckBox_RazorQT.Enabled = False
+    CheckBox_MATE.Enabled = False
+    CheckBox_XFCE.Enabled = False
+    CheckBox_Pantheon.Enabled = False
+    CheckBox_LXDE.Enabled = False
+    Else
+    'Uncheck all Checkboxes
+    CheckBox_Unity.Value = False
+    CheckBox_Cinnamon.Value = False
+    CheckBox_KDE.Value = False
+    CheckBox_Gnome.Value = False
+    CheckBox_RazorQT.Value = False
+    CheckBox_MATE.Value = False
+    CheckBox_XFCE.Value = False
+    CheckBox_Pantheon.Value = False
+    CheckBox_LXDE.Value = False
+    'Enabled all Checkboxes
+    CheckBox_Unity.Enabled = True
+    CheckBox_Cinnamon.Enabled = True
+    CheckBox_KDE.Enabled = True
+    CheckBox_Gnome.Enabled = True
+    CheckBox_RazorQT.Enabled = True
+    CheckBox_MATE.Enabled = True
+    CheckBox_XFCE.Enabled = True
+    CheckBox_Pantheon.Enabled = True
+    CheckBox_LXDE.Enabled = True
+  Endif
+
+End
