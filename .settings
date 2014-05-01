@@ -7,13 +7,9 @@ Count=0
 [OpenFile]
 Active=1
 File[1]=".src/FMain.form"
-File[2]=".src/FMain.class:235.2"
-Fold[2]=[9,15,21,107,151,174,193,202,210,216,239]
-File[3]=".src/FHelp.form"
-File[4]=".src/FAbout.form"
-File[5]=".src/FAbout.class:3.0"
-File[6]=".src/FHelp.class:13.3"
-Count=6
+File[2]=".src/FMain.class:138.72"
+Fold[2]=[29]
+Count=2
 
 [Watches]
 Count=0

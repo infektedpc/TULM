@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,44,56)
+  MoveScaled(0,0,68,56)
   Text = ("TULM - The Universal Launcher Maker")
   Icon = Picture["launch-icon.png"]
   Resizable = False
@@ -52,46 +52,45 @@
     Text = ("Icon")
   }
   { TextBox_Name TextBox
-    MoveScaled(13,2,24,4)
+    MoveScaled(13,2,25,4)
     ToolTip = ("Enter name of the application.")
   }
   { TextBox_Comment TextBox
-    MoveScaled(13,8,24,4)
+    MoveScaled(13,8,25,4)
     ToolTip = ("Enter a short description of the application.")
   }
   { TextBox_EXEC TextBox
-    MoveScaled(13,14,24,4)
+    MoveScaled(13,14,25,4)
     ToolTip = ("Enter path of the application.")
   }
   { Button_EXEC Button
-    MoveScaled(38,14,5,4)
+    MoveScaled(39,14,5,4)
     ToolTip = ("Browse for the application.")
-    Text = ("...")
+    Picture = Picture["icon:/22/exec"]
   }
-  { !ComboBox_Categories ComboBox
-    MoveScaled(13,20,24,4)
-    #Public = True
+  { ComboBox_Categories ComboBox
+    MoveScaled(13,20,25,4)
     List = [("Accessibilty"), ("Audio"), ("AudioVideo"), ("Video"), ("Development"), ("Education"), ("Game"), ("Graphics"), ("Network"), ("Office"), ("Other"), ("Programming"), ("Science"), ("Settings"), ("System"), ("Utility")]
   }
   { Button_Add_Category Button
-    MoveScaled(38,20,5,4)
+    MoveScaled(39,20,5,4)
     ToolTip = ("Add Category")
     Picture = Picture["icon:/16/apply"]
   }
   { Button_Remove_Category Button
-    MoveScaled(38,26,5,4)
+    MoveScaled(39,26,5,4)
     ToolTip = ("Remove Category")
     Picture = Picture["icon:/16/remove"]
   }
   { PictureBox1 PictureBox
     MoveScaled(2,31,8,8)
     ToolTip = ("Click to browse for icon.")
-    Picture = Picture["launch-icon.png"]
+    Picture = Picture["tulm.png"]
     Stretch = True
     Border = Border.Sunken
   }
   { ListBox_Categories ListBox
-    MoveScaled(13,26,24,16)
+    MoveScaled(13,26,25,16)
   }
   { CheckBox_StartupNotify CheckBox
     MoveScaled(8,43,16,4)
@@ -104,15 +103,27 @@
     Text = ("Terminal")
   }
   { Button_Open Button
-    MoveScaled(2,48,12,4)
+    MoveScaled(17,48,12,4)
     ToolTip = ("Open existing Launcher (.desktop)")
     Text = ("Open")
     Picture = Picture["icon:/16/open"]
   }
   { Button_Save Button
-    MoveScaled(30,48,12,4)
+    MoveScaled(32,48,12,4)
     ToolTip = ("Save the launcher.")
     Text = ("Save")
     Picture = Picture["icon:/16/save"]
+  }
+  { Button_Desktops Button
+    MoveScaled(1,48,13,4)
+    ToolTip = ("Desktops you want the application to show in.")
+    Text = ("Desktops")
+    Picture = Picture["icon:/22/menu"]
+  }
+  { PictureBox2 PictureBox
+    MoveScaled(52,23,16,16)
+  }
+  { Button1 Button
+    MoveScaled(51,41,16,4)
   }
 }

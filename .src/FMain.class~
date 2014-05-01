@@ -1,19 +1,23 @@
 ' Gambas class file
 
-Public Sub _new()
-  
-End
-
 Public SelectedImage As String = ""
 Public Categories As String = ""
 Public MSG_TULM_Only As String = "TULM can only open launchers created with TULM."
 Public MSG_Desktop_File_Exist As String = "File already exist, Replace file?"
-Public MSG_No_File_Name As String = "Launcher has not been given a name"
+Public MSG_No_File_Name As String = "Launcher has not been given a name."
 Public MSG_Unsupported_Image_Type As String = "Please select a supported image type."
+Public MSG_No_Catagory_To_Add As String = "Please select a catagory to add."
+Public MSG_No_Catagory_To_Remove As String = "Please select a catagory to remove."
+
+Public Sub _new()
+  
+End
 
 Public Sub Form_Open()
-  
+  'Center Form
   FMain.Center
+  'Set default image Path for ....
+  SelectedImage = "" 'ADD PATH HERE
   
 End
 
@@ -131,17 +135,26 @@ Public Sub Create_Desktop_File()
   Dim StartupNotify_Boolean As Boolean = CheckBox_StartupNotify.Value
   Dim Terminal_Boolean As Boolean = CheckBox_Terminal.Value
   Dim Temp_File_Name As String = Lower$(TextBox_Name.Text)
+  Dim InvalChar As String 
+  Dim InvalidChars As String[] = [Chr$(92), "/", ":", "*", "?", Chr$(34), "<", ">", "|", Chr$(32)] 
   
-  Temp_File_Name = Trim$(Temp_File_Name)
+  'Remove InvalidChars from Temp_File_Name
+  For Each InvalChar In InvalidChars 
+    Temp_File_Name = Replace(Temp_File_Name, InvalChar, Null) 
+  Next 
+  
   'String Categories From ListBox_Categories
   Categories = ListBox_Categories.List.Join(";")
+  
   'Save .desktop
   file.Save("/home/" & System.User.Name & "/.local/share/applications/" & Temp_File_Name & ".desktop", "#Created With Tulm 0.1\n" & "[Desktop Entry]\n" & "Version=1.0\n" & "Name=" & TextBox_Name.text & "\n" & "Comment=" & TextBox_Comment.text & "\n" & "Exec=" & TextBox_EXEC.Text & "\n" & "Icon=" & SelectedImage & "\n" & "Categories=" & Categories & "\n" & "Terminal=" & Str$(Terminal_Boolean) & "\n" & "Type=Application" & "\n" & "StartupNotify=" & Str$(StartupNotify_Boolean))
+  
   'File Save MSG
   Message.Info("File " & TextBox_Name.Text & ".desktop Created!")
+  
   'Clean
-  PictureBox1.Picture = Null
-  SelectedImage = ""
+  SelectedImage = "" 'ADD PATH HERE
+  PictureBox1.Picture = picture.Load(SelectedImage)
   Categories = ""
   TextBox_Name.Clear
   TextBox_Comment.Clear
@@ -198,6 +211,8 @@ Public Sub Button_Add_Category_Click()
   If Not ComboBox_Categories.Text = "" Then
     ListBox_Categories.Add(ComboBox_Categories.Text)
     ComboBox_Categories.Text = ""
+    Else
+      Message.Info(MSG_No_Catagory_To_Add)
   Endif
   
 End
@@ -206,6 +221,8 @@ Public Sub Button_Remove_Category_Click()
 
   If Not ListBox_Categories.Text = "" Then
     ListBox_Categories.Remove(ListBox_Categories.Index)
+     Else
+      Message.Info(MSG_No_Catagory_To_Remove)
   Endif
   
 End
@@ -228,7 +245,7 @@ Public Sub MenuFile_Save_Click()
       Create_Desktop_File
     Endif
   Else
-    Message.Info(No_File_Name_MSG)
+    Message.Info(MSG_No_File_Name)
   Endif
   
 End
@@ -243,4 +260,18 @@ Public Sub MenuAbout_About_Click()
   
   FAbout.show
   
+End
+
+
+Public Sub Button1_Click()
+
+PictureBox1.Picture = Picture.Load("icon:/48/add")
+  'Shell "xdg-open .icons"
+  Shell "xdg-open"
+  
+End
+Public Sub Button_Desktops_Click()
+
+  FOnly.show
+
 End
