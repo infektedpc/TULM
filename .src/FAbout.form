@@ -3,11 +3,12 @@
 { Form Form
   MoveScaled(0,0,61,29)
   Text = ("About - TULM")
+  Icon = Picture["tulm.png"]
   Resizable = False
   { PictureBox1 PictureBox
     MoveScaled(2,7,8,8)
     Expand = True
-    Picture = Picture["launch-icon.png"]
+    Picture = Picture["tulm.png"]
     Stretch = True
     AutoResize = True
   }

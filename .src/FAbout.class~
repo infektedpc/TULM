@@ -5,6 +5,8 @@ Public Sub Form_Open()
 
   FAbout.Center
 
+  PictureBox1.Picture = picture.Load("/usr/share/pixmaps/tulm.png")
+
 End
 
 Public Sub Button_close_Click()
@@ -13,8 +15,5 @@ Public Sub Button_close_Click()
 
 End
 
-Public Sub TextArea1_KeyPress()
 
-  
 
-End

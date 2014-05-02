@@ -1,47 +1,71 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,47,18)
+  MoveScaled(0,0,42,18)
   Text = ("Only Show In")
   Resizable = False
-  { CheckBox_Unity CheckBox
+  { !CheckBox_Unity CheckBox
     MoveScaled(1,1,11,4)
+    #Public = True
+    Enabled = False
     Text = ("Unity")
   }
-  { CheckBox_Gnome CheckBox
+  { !CheckBox_Gnome CheckBox
     MoveScaled(1,5,11,4)
-    Text = ("Gnome")
+    #Public = True
+    Enabled = False
+    Text = ("GNOME")
   }
-  { CheckBox_XFCE CheckBox
+  { !CheckBox_XFCE CheckBox
     MoveScaled(1,9,11,4)
+    #Public = True
+    Enabled = False
     Text = ("XFCE")
   }
-  { CheckBox_KDE CheckBox
-    MoveScaled(32,1,24,4)
+  { !CheckBox_KDE CheckBox
+    MoveScaled(32,1,8,4)
+    #Public = True
+    Enabled = False
     Text = ("KDE")
   }
-  { CheckBox_RazorQT CheckBox
-    MoveScaled(32,5,12,4)
-    Text = ("RazorQT")
+  { !CheckBox_RazorQT CheckBox
+    MoveScaled(15,5,12,4)
+    #Public = True
+    Enabled = False
+    Text = ("Razor")
   }
-  { CheckBox_LXDE CheckBox
+  { !CheckBox_LXDE CheckBox
     MoveScaled(32,9,10,4)
+    #Public = True
+    Enabled = False
     Text = ("LXDE")
   }
-  { CheckBox_Cinnamon CheckBox
+  { !CheckBox_Cinnamon CheckBox
     MoveScaled(15,1,13,4)
+    #Public = True
+    Enabled = False
     Text = ("Cinnamon")
   }
-  { CheckBox_MATE CheckBox
-    MoveScaled(15,5,13,4)
+  { !CheckBox_MATE CheckBox
+    MoveScaled(32,5,8,4)
+    #Public = True
+    Enabled = False
     Text = ("MATE")
   }
-  { CheckBox_Pantheon CheckBox
+  { !CheckBox_Pantheon CheckBox
     MoveScaled(15,9,14,4)
+    #Public = True
+    Enabled = False
     Text = ("Pantheon")
   }
   { Button_Ok Button
-    MoveScaled(35,13,11,4)
+    MoveScaled(30,13,11,4)
     Text = ("OK")
+  }
+  { !CheckBox_All CheckBox
+    MoveScaled(1,13,24,4)
+    #Public = True
+    Text = ("Show In All Desktops")
+    Value = CheckBox.True
   }
 }

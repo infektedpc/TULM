@@ -2,12 +2,27 @@
 
 Public SelectedImage As String = ""
 Public Categories As String = ""
+Public OnlyShowIn As String = ""
+'Messages
 Public MSG_TULM_Only As String = "TULM can only open launchers created with TULM."
 Public MSG_Desktop_File_Exist As String = "File already exist, Replace file?"
 Public MSG_No_File_Name As String = "Launcher has not been given a name."
 Public MSG_Unsupported_Image_Type As String = "Please select a supported image type."
 Public MSG_No_Catagory_To_Add As String = "Please select a catagory to add."
 Public MSG_No_Catagory_To_Remove As String = "Please select a catagory to remove."
+Public MSG_No_Categories As String = "Please add at least one catagory."
+Public MSG_No_EXEC As String = "Launcher has not been given a executable path."
+'Checkbox Values
+Public Unity_CheckBox As Boolean = False
+Public Cinnamon_CheckBox As Boolean = False
+Public KDE_CheckBox As Boolean = False
+Public Gnome_CheckBox As Boolean = False
+Public RazorQT_CheckBox As Boolean = False
+Public MATE_CheckBox As Boolean = False
+Public XFCE_CheckBox As Boolean = False
+Public Pantheon_CheckBox As Boolean = False
+Public LXDE_CheckBox As Boolean = False
+Public All_CheckBox As Boolean = True
 
 Public Sub _new()
   
@@ -15,9 +30,11 @@ End
 
 Public Sub Form_Open()
   'Center Form
+  
   FMain.Center
   'Set default image Path for ....
-  SelectedImage = "" 'ADD PATH HERE
+  SelectedImage = "/usr/share/pixmaps/tulm.png" 'ADD PATH HERE
+  PictureBox1.Picture = picture.Load(SelectedImage)
   
 End
 
@@ -39,7 +56,7 @@ Public Sub Open_Desktop_File()
   'Dialog.filter = [""]
   'Set Default Path
   Dialog.Path = "/home/" & System.User.Name & "/.local/share/applications"
-  If Dialog.OpenFile() Then Return
+  If Dialog.OpenFile(False) Then Return
   'Check For TULM Comment
   If InStr(file.Load(Dialog.path), "#Created With Tulm 0.1") = 0 Then
     Message.Info(MSG_TULM_Only)
@@ -75,6 +92,8 @@ Public Sub Open_Desktop_File()
           PictureBox1.picture = picture.Load(SelectedImage)
         Else
           'RELOAD THE DEFALT PICTURE HERE
+          SelectedImage = "/usr/share/pixmaps/tulm.png" 'ADD PATH HERE
+          PictureBox1.Picture = picture.Load(SelectedImage)
         Endif
       Endif
       
@@ -116,13 +135,21 @@ End
 Public Sub Button_Save_Click()
   
   If Not TextBox_Name.Text = "" Then
-    'Check if file Exist
-    If Exist("/home/" & System.User.Name & "/.local/share/applications/" & TextBox_Name.Text & ".desktop") Then
-      If Message.Question(MSG_Desktop_File_Exist, "Yes", "No") = 1 Then
+    If Not TextBox_EXEC.Text = "" Then
+      If Not ListBox_Categories.Count = -1 Then
+        'Check if file Exist
+        If Exist("/home/" & System.User.Name & "/.local/share/applications/" & TextBox_Name.Text & ".desktop") Then
+          If Message.Question(MSG_Desktop_File_Exist, "Yes", "No") = 1 Then
+            Create_Desktop_File
+          Endif
+        Else
+          Message.Info(MSG_No_Categories)
+        Endif
+      Else
         Create_Desktop_File
       Endif
     Else
-      Create_Desktop_File
+      Message.Info(MSG_No_EXEC)
     Endif
   Else
     Message.Info(MSG_No_File_Name)
@@ -146,29 +173,86 @@ Public Sub Create_Desktop_File()
   'String Categories From ListBox_Categories
   Categories = ListBox_Categories.List.Join(";")
   
-  'Save .desktop
-  file.Save("/home/" & System.User.Name & "/.local/share/applications/" & Temp_File_Name & ".desktop", "#Created With Tulm 0.1\n" & "[Desktop Entry]\n" & "Version=1.0\n" & "Name=" & TextBox_Name.text & "\n" & "Comment=" & TextBox_Comment.text & "\n" & "Exec=" & TextBox_EXEC.Text & "\n" & "Icon=" & SelectedImage & "\n" & "Categories=" & Categories & "\n" & "Terminal=" & Str$(Terminal_Boolean) & "\n" & "Type=Application" & "\n" & "StartupNotify=" & Str$(StartupNotify_Boolean))
+  If Unity_CheckBox = False And If Cinnamon_CheckBox = False And If KDE_CheckBox = False And If Gnome_CheckBox = False And If RazorQT_CheckBox = False And If MATE_CheckBox = False And If XFCE_CheckBox = False And If Pantheon_CheckBox = False And If LXDE_CheckBox = False Then
+    
+    'Save .desktop
+    file.Save("/home/" & System.User.Name & "/.local/share/applications/" & Temp_File_Name & ".desktop", "#Created With Tulm 0.1\n" & "[Desktop Entry]\n" & "Version=1.0\n" & "Name=" & TextBox_Name.text & "\n" & "Comment=" & TextBox_Comment.text & "\n" & "Exec=" & TextBox_EXEC.Text & "\n" & "Icon=" & SelectedImage & "\n" & "Categories=" & Categories & "\n" & "Terminal=" & Str$(Terminal_Boolean) & "\n" & "Type=Application" & "\n" & "StartupNotify=" & Str$(StartupNotify_Boolean))
+    
+  Else
+    'Unity
+    If Unity_CheckBox = True Then
+      OnlyShowIn = OnlyShowIn & FOnly.CheckBox_Unity.Text & ";"
+    Endif
+    'Cinnamon
+    If Cinnamon_CheckBox = True Then
+      OnlyShowIn = OnlyShowIn & FOnly.CheckBox_Cinnamon.Text & ";"
+    Endif
+    'KDE
+    If KDE_CheckBox = True Then
+      OnlyShowIn = OnlyShowIn & FOnly.CheckBox_KDE.Text & ";"
+    Endif
+    'Gnome
+    If Gnome_CheckBox = True Then
+      OnlyShowIn = OnlyShowIn & FOnly.CheckBox_Gnome.Text & ";"
+    Endif
+    'RazorQT
+    If RazorQT_CheckBox = True Then
+      OnlyShowIn = OnlyShowIn & FOnly.CheckBox_RazorQT.Text & ";"
+    Endif
+    'MATE
+    If MATE_CheckBox = True Then
+      OnlyShowIn = OnlyShowIn & FOnly.CheckBox_MATE.Text & ";"
+    Endif
+    'XFCE
+    If XFCE_CheckBox = True Then
+      OnlyShowIn = OnlyShowIn & FOnly.CheckBox_XFCE.Text & ";"
+    Endif
+    'Pantheon
+    If Pantheon_CheckBox = True Then
+      OnlyShowIn = OnlyShowIn & FOnly.CheckBox_Pantheon.Text & ";"
+    Endif
+    'LXDE
+    If LXDE_CheckBox = True Then
+      OnlyShowIn = OnlyShowIn & FOnly.CheckBox_LXDE.Text & ";"
+    Endif
+    
+    'Save .desktop
+    file.Save("/home/" & System.User.Name & "/.local/share/applications/" & Temp_File_Name & ".desktop", "#Created With Tulm 0.1\n" & "[Desktop Entry]\n" & "Version=1.0\n" & "Name=" & TextBox_Name.text & "\n" & "Comment=" & TextBox_Comment.text & "\n" & "Exec=" & TextBox_EXEC.Text & "\n" & "Icon=" & SelectedImage & "\n" & "Categories=" & Categories & "\n" & "Terminal=" & Str$(Terminal_Boolean) & "\n" & "Type=Application" & "\n" & "StartupNotify=" & Str$(StartupNotify_Boolean) & "\n" & "OnlyShowIn=" & Str$(OnlyShowIn))
+    
+  Endif
   
   'File Save MSG
   Message.Info("File " & TextBox_Name.Text & ".desktop Created!")
   
   'Clean
-  SelectedImage = "" 'ADD PATH HERE
+  SelectedImage = "/usr/share/pixmaps/tulm.png"
   PictureBox1.Picture = picture.Load(SelectedImage)
   Categories = ""
   TextBox_Name.Clear
   TextBox_Comment.Clear
   TextBox_EXEC.Clear
-  ComboBox_Categories.Clear
+  ComboBox_Categories.text = ""
   ListBox_Categories.Clear
+  CheckBox_StartupNotify.Value = False
+  CheckBox_Terminal.Value = False
+  'False all Checkbox values
+  Unity_CheckBox = False
+  Cinnamon_CheckBox = False
+  KDE_CheckBox = False
+  Gnome_CheckBox = False
+  RazorQT_CheckBox = False
+  MATE_CheckBox = False
+  XFCE_CheckBox = False
+  Pantheon_CheckBox = False
+  LXDE_CheckBox = False
+  All_CheckBox = False
+  
 Catch
   Message.Error("Error: " & Error.Text)
   
 End
 
 Public Sub PictureBox1_MouseDown()
-  
-  SelectedImage = ""
   'Open File Dialog
   Dialog.Title = "Select Image"
   Dialog.filter = ["*.jpg;*.jpeg;*.png;*.bmp", "All Files", "*.jpg;*.jpeg", "Joint Photographic Expert Group", "*.png", "Portable Network Graphics", "*.bmp", "Bitmap"]
@@ -176,7 +260,8 @@ Public Sub PictureBox1_MouseDown()
   If Exist("/home/" & System.User.Name & "/Pictures") Then
     Dialog.Path = "/home/" & System.User.Name & "/Pictures"
   Endif
-  If Dialog.OpenFile() Then Return
+  If Dialog.OpenFile(False) Then Return
+  SelectedImage = ""
   'Check File Ext
   If file.ext(Dialog.path) = "jpg" Or file.ext(Dialog.path) = "jpeg" Or file.ext(Dialog.path) = "png" Or file.ext(Dialog.path) = "bmp" Then
     PictureBox1.picture = picture.Load(Dialog.path)
@@ -195,10 +280,10 @@ Public Sub Button_EXEC_Click()
   Dialog.Title = "Select File"
   Dialog.filter = [""]
   'Set Default Path
-    If Exist("/home/" & System.User.Name) Then
+  If Exist("/home/" & System.User.Name) Then
     Dialog.Path = "/home/" & System.User.Name
   Endif
-  If Dialog.OpenFile() Then Return
+  If Dialog.OpenFile(False) Then Return
   TextBox_Name.text = File.BaseName(Dialog.Path)
   TextBox_EXEC.text = Dialog.path
 Catch
@@ -211,18 +296,18 @@ Public Sub Button_Add_Category_Click()
   If Not ComboBox_Categories.Text = "" Then
     ListBox_Categories.Add(ComboBox_Categories.Text)
     ComboBox_Categories.Text = ""
-    Else
-      Message.Info(MSG_No_Catagory_To_Add)
+  Else
+    Message.Info(MSG_No_Catagory_To_Add)
   Endif
   
 End
 
 Public Sub Button_Remove_Category_Click()
-
+  
   If Not ListBox_Categories.Text = "" Then
     ListBox_Categories.Remove(ListBox_Categories.Index)
-     Else
-      Message.Info(MSG_No_Catagory_To_Remove)
+  Else
+    Message.Info(MSG_No_Catagory_To_Remove)
   Endif
   
 End
@@ -262,13 +347,8 @@ Public Sub MenuAbout_About_Click()
   
 End
 
-
-Public Sub Button1_Click()
-
-
-End
-Public Sub Button_Desktops_Click()
-
-  FOnly.show
-
+Public Sub Button_Desktops_Click()  
+  
+  FOnly.ShowDialog
+  
 End

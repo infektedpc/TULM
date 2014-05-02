@@ -2,8 +2,8 @@
 # Compiled with Gambas 3.1.1
 Title=TULM
 Startup=FMain
-Icon=launch-icon.png
-Version=0.0.1
+Icon=tulm128x.png
+Version=0.0.2
 Component=gb.image
 Component=gb.qt4
 Component=gb.form
@@ -17,11 +17,10 @@ Address=infektedpc@gmail.com
 Url=https://github.com/infektedpc/TULM
 License=General Public License
 UseRelease=1
-PackageName=tulm-0.0.1
-MimeTypes=".dekstop"
+PackageName=tulm-0.0.2
 Packager=1
 Systems=ubuntu
 Menus=ubuntu:"Applications/System/Administration"
 Categories=ubuntu:"System"
 Groups=ubuntu:"utils"
-ExtraFiles=ubuntu:"CHANGELOG\t"
+ExtraDependencies=ubuntu:"\t\t"

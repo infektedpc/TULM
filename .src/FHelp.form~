@@ -7,7 +7,7 @@
   { !TextArea1 TextArea
     MoveScaled(1,1,59,22)
     #Public = True
-    Text = ("The Universal Launcher Maker Help File...\n\nto use autofill feature first select path of excutable file\n\n.dekstop files are saved in /home/USERNAME/.local/share/applications\n\nTULM will only open TULM made launchers to prevent corruption of other launchers made without tulm\n")
+    Text = ("The Universal Launcher Maker Help File...\n\nto use autofill feature first select path of excutable file\n\n.dekstop files are saved in /home/USERNAME/.local/share/applications\n\nTULM will only open TULM made launchers to prevent corruption of other launchers made without tulm")
     ReadOnly = True
     Wrap = True
   }

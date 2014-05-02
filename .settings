@@ -5,11 +5,15 @@ Count=0
 Count=0
 
 [OpenFile]
-Active=1
 File[1]=".src/FMain.form"
-File[2]=".src/FMain.class:138.72"
-Fold[2]=[29]
-Count=2
+Active=2
+File[2]=".src/FMain.class:129.36"
+Fold[2]=[30,40,134]
+File[3]=".src/FOnly.form"
+File[4]=".src/FOnly.class:19.3"
+File[5]=".src/FAbout.form"
+File[6]=".src/FAbout.class:1.0"
+Count=6
 
 [Watches]
 Count=0

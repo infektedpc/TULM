@@ -3,7 +3,7 @@
 { Form Form
   MoveScaled(0,0,45,56)
   Text = ("TULM - The Universal Launcher Maker")
-  Icon = Picture["launch-icon.png"]
+  Icon = Picture["tulm128x.png"]
   Resizable = False
   { MenuFile Menu
     Text = ("File")
@@ -85,7 +85,7 @@
   { PictureBox1 PictureBox
     MoveScaled(2,31,8,8)
     ToolTip = ("Click to browse for icon.")
-    Picture = Picture["tulm.png"]
+    Picture = Picture["tulm64x.png"]
     Stretch = True
     Border = Border.Sunken
   }

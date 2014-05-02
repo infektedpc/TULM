@@ -7,7 +7,7 @@
   { PictureBox1 PictureBox
     MoveScaled(2,7,8,8)
     Expand = True
-    Picture = Picture["launch-icon.png"]
+    Picture = Picture["tulm.png"]
     Stretch = True
     AutoResize = True
   }
@@ -25,7 +25,7 @@
     Wrap = True
   }
   { Button_close Button
-    MoveScaled(46,24,14,4)
+    MoveScaled(50,24,10,4)
     Text = ("Close")
   }
 }

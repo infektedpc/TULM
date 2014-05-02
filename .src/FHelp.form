@@ -3,6 +3,7 @@
 { Form Form
   MoveScaled(0,0,61,29)
   Text = ("Help - TULM")
+  Icon = Picture["tulm.png"]
   Resizable = False
   { !TextArea1 TextArea
     MoveScaled(1,1,59,22)
