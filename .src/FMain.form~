@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,70,56)
+  MoveScaled(0,0,45,56)
   Text = ("TULM - The Universal Launcher Maker")
   Icon = Picture["tulm128x.png"]
   Resizable = False
@@ -119,8 +119,5 @@
     ToolTip = ("Desktops you want the application to show in.")
     Text = ("Desktops")
     Picture = Picture["icon:/22/menu"]
-  }
-  { Button1 Button
-    MoveScaled(49,41,16,4)
   }
 }

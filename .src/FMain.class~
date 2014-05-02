@@ -53,10 +53,10 @@ Public Sub Open_Desktop_File()
   
   'Open File Dialog
   Dialog.Title = "Open .Desktop File"
-  'Dialog.filter = [""]
+  Dialog.filter = ["*All;*"]
   'Set Default Path
   Dialog.Path = "/home/" & System.User.Name & "/.local/share/applications"
-  If Dialog.OpenFile(True) Then Return
+  If Dialog.OpenFile(False) Then Return
   'Check For TULM Comment
   If InStr(file.Load(Dialog.path), "#Created With Tulm 0.1") = 0 Then
     Message.Info(MSG_TULM_Only)
@@ -260,7 +260,7 @@ Public Sub PictureBox1_MouseDown()
   If Exist("/home/" & System.User.Name & "/Pictures") Then
     Dialog.Path = "/home/" & System.User.Name & "/Pictures"
   Endif
-  If Dialog.OpenFile(True) Then Return
+  If Dialog.OpenFile(False) Then Return
   SelectedImage = ""
   'Check File Ext
   If file.ext(Dialog.path) = "jpg" Or file.ext(Dialog.path) = "jpeg" Or file.ext(Dialog.path) = "png" Or file.ext(Dialog.path) = "bmp" Then
@@ -283,7 +283,7 @@ Public Sub Button_EXEC_Click()
   If Exist("/home/" & System.User.Name) Then
     Dialog.Path = "/home/" & System.User.Name
   Endif
-  If Dialog.OpenFile(True) Then Return
+  If Dialog.OpenFile(False) Then Return
   TextBox_Name.text = File.BaseName(Dialog.Path)
   TextBox_EXEC.text = Dialog.path
 Catch

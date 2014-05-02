@@ -3,7 +3,7 @@
 Title=TULM
 Startup=FMain
 Icon=tulm128x.png
-Version=0.0.2
+Version=0.0.3
 Component=gb.image
 Component=gb.qt4
 Component=gb.form
@@ -17,7 +17,7 @@ Address=infektedpc@gmail.com
 Url=https://github.com/infektedpc/TULM
 License=General Public License
 UseRelease=1
-PackageName=tulm-0.0.2
+PackageName=tulm-0.0.3
 Packager=1
 Systems=ubuntu
 Menus=ubuntu:"Applications/System/Administration"

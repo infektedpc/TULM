@@ -53,7 +53,7 @@ Public Sub Open_Desktop_File()
   
   'Open File Dialog
   Dialog.Title = "Open .Desktop File"
-  'Dialog.filter = [""]
+  Dialog.filter = ["*All Files"]
   'Set Default Path
   Dialog.Path = "/home/" & System.User.Name & "/.local/share/applications"
   If Dialog.OpenFile(False) Then Return
