@@ -304,7 +304,7 @@ End
 
 Public Sub Button_Remove_Category_Click()
   
-  If Not ListBox_Categories.Text = "" Then
+  If Not ListBox_Categories.Index = -1 Then
     ListBox_Categories.Remove(ListBox_Categories.Index)
   Else
     Message.Info(MSG_No_Catagory_To_Remove)

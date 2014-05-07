@@ -53,7 +53,7 @@ Public Sub Open_Desktop_File()
   
   'Open File Dialog
   Dialog.Title = "Open .Desktop File"
-  Dialog.filter = ["*All;*"]
+  Dialog.filter = ["*All Files"]
   'Set Default Path
   Dialog.Path = "/home/" & System.User.Name & "/.local/share/applications"
   If Dialog.OpenFile(False) Then Return
@@ -136,7 +136,7 @@ Public Sub Button_Save_Click()
   
   If Not TextBox_Name.Text = "" Then
     If Not TextBox_EXEC.Text = "" Then
-      If Not ListBox_Categories.Count = -1 Then
+      If Not ListBox_Categories.Count = 0 Then
         'Check if file Exist
         If Exist("/home/" & System.User.Name & "/.local/share/applications/" & TextBox_Name.Text & ".desktop") Then
           If Message.Question(MSG_Desktop_File_Exist, "Yes", "No") = 1 Then
@@ -304,7 +304,7 @@ End
 
 Public Sub Button_Remove_Category_Click()
   
-  If Not ListBox_Categories.Text = "" Then
+  If Not ListBox_Categories.Index = -1 Then
     ListBox_Categories.Remove(ListBox_Categories.Index)
   Else
     Message.Info(MSG_No_Catagory_To_Remove)
