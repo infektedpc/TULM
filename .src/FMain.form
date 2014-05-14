@@ -115,7 +115,7 @@
     Picture = Picture["icon:/16/save"]
   }
   { Button_Desktops Button
-    MoveScaled(1,48,13,4)
+    MoveScaled(1,48,14,4)
     ToolTip = ("Desktops you want the application to show in.")
     Text = ("Desktops")
     Picture = Picture["icon:/22/menu"]

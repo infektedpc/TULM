@@ -1,6 +1,5 @@
 ' Gambas class file
 
-' 
 Public Sub Form_Open()
   
   'Center Window
@@ -9,14 +8,14 @@ Public Sub Form_Open()
   CheckBox_Unity.Value = FMain.Unity_CheckBox
   CheckBox_Cinnamon.Value = FMain.Cinnamon_CheckBox
   CheckBox_KDE.Value = FMain.KDE_CheckBox
-  CheckBox_Gnome.Value = FMain.Gnome_CheckBox
+  CheckBox_GNOME.Value = FMain.GNOME_CheckBox
   CheckBox_RazorQT.Value = FMain.RazorQT_CheckBox
   CheckBox_MATE.Value = FMain.MATE_CheckBox
   CheckBox_XFCE.Value = FMain.XFCE_CheckBox
   CheckBox_Pantheon.Value = FMain.Pantheon_CheckBox
   CheckBox_LXDE.Value = FMain.LXDE_CheckBox
   CheckBox_All.Value = FMain.All_CheckBox
- 
+  
 End
 
 Public Sub Button_Ok_Click()
@@ -32,7 +31,7 @@ Public Sub CheckBox_All_Click()
     CheckBox_Unity.Value = False
     CheckBox_Cinnamon.Value = False
     CheckBox_KDE.Value = False
-    CheckBox_Gnome.Value = False
+    CheckBox_GNOME.Value = False
     CheckBox_RazorQT.Value = False
     CheckBox_MATE.Value = False
     CheckBox_XFCE.Value = False
@@ -42,7 +41,7 @@ Public Sub CheckBox_All_Click()
     CheckBox_Unity.Enabled = False
     CheckBox_Cinnamon.Enabled = False
     CheckBox_KDE.Enabled = False
-    CheckBox_Gnome.Enabled = False
+    CheckBox_GNOME.Enabled = False
     CheckBox_RazorQT.Enabled = False
     CheckBox_MATE.Enabled = False
     CheckBox_XFCE.Enabled = False
@@ -53,7 +52,7 @@ Public Sub CheckBox_All_Click()
     CheckBox_Unity.Value = False
     CheckBox_Cinnamon.Value = False
     CheckBox_KDE.Value = False
-    CheckBox_Gnome.Value = False
+    CheckBox_GNOME.Value = False
     CheckBox_RazorQT.Value = False
     CheckBox_MATE.Value = False
     CheckBox_XFCE.Value = False
@@ -63,7 +62,7 @@ Public Sub CheckBox_All_Click()
     CheckBox_Unity.Enabled = True
     CheckBox_Cinnamon.Enabled = True
     CheckBox_KDE.Enabled = True
-    CheckBox_Gnome.Enabled = True
+    CheckBox_GNOME.Enabled = True
     CheckBox_RazorQT.Enabled = True
     CheckBox_MATE.Enabled = True
     CheckBox_XFCE.Enabled = True
@@ -79,11 +78,12 @@ Public Sub Form_Close()
   FMain.Unity_CheckBox = CheckBox_Unity.Value
   FMain.Cinnamon_CheckBox = CheckBox_Cinnamon.Value
   FMain.KDE_CheckBox = CheckBox_KDE.Value
-  FMain.Gnome_CheckBox = CheckBox_Gnome.Value
+  FMain.GNOME_CheckBox = CheckBox_GNOME.Value
   FMain.RazorQT_CheckBox = CheckBox_RazorQT.Value
   FMain.MATE_CheckBox = CheckBox_MATE.Value
   FMain.XFCE_CheckBox = CheckBox_XFCE.Value
   FMain.Pantheon_CheckBox = CheckBox_Pantheon.Value
   FMain.LXDE_CheckBox = CheckBox_LXDE.Value
   FMain.All_CheckBox = CheckBox_All.Value
+
 End

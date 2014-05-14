@@ -16,7 +16,7 @@ Public MSG_No_EXEC As String = "Launcher has not been given a executable path."
 Public Unity_CheckBox As Boolean = False
 Public Cinnamon_CheckBox As Boolean = False
 Public KDE_CheckBox As Boolean = False
-Public Gnome_CheckBox As Boolean = False
+Public GNOME_CheckBox As Boolean = False
 Public RazorQT_CheckBox As Boolean = False
 Public MATE_CheckBox As Boolean = False
 Public XFCE_CheckBox As Boolean = False
@@ -29,11 +29,11 @@ Public Sub _new()
 End
 
 Public Sub Form_Open()
-  'Center Form
   
+  'Center Form
   FMain.Center
-  'Set default image Path for ....
-  SelectedImage = "/usr/share/pixmaps/tulm.png" 'ADD PATH HERE
+  'Set default image Path
+  SelectedImage = "/usr/share/pixmaps/tulm.png"
   PictureBox1.Picture = picture.Load(SelectedImage)
   
 End
@@ -91,8 +91,8 @@ Public Sub Open_Desktop_File()
         If Exist(SelectedImage) Then
           PictureBox1.picture = picture.Load(SelectedImage)
         Else
-          'RELOAD THE DEFALT PICTURE HERE
-          SelectedImage = "/usr/share/pixmaps/tulm.png" 'ADD PATH HERE
+          'Reload default image
+          SelectedImage = "/usr/share/pixmaps/tulm.png"
           PictureBox1.Picture = picture.Load(SelectedImage)
         Endif
       Endif
@@ -123,6 +123,58 @@ Public Sub Open_Desktop_File()
         Endif
       Endif
       
+      'Check For OnlyShowIn
+      If InStr(Temp_File_Line, "OnlyShowIn") = 1 Then
+        Temp_Categories = Split(Mid$(Temp_File_Line, 12), ";", Null, True, True)
+        For Each Temp_File_Line In Temp_Categories
+          'ListBox_Categories.Add(Temp_File_Line)
+          
+          If Temp_File_Line = "Unity " Then
+            Unity_CheckBox As Boolean = True
+          Endif
+          
+          If Temp_File_Line = "Cinnamon"
+            Cinnamon_CheckBox As Boolean = True
+          Endif
+          
+          If Temp_File_Line = "KDE" Then
+            KDE_CheckBox As Boolean = True
+          Endif
+          
+          If Temp_File_Line = "GNOME" Then
+            GNOME_CheckBox As Boolean = True
+          Endif
+          
+          If Temp_File_Line = "RazorQT" Then
+            RazorQT_CheckBox As Boolean = True
+          Endif
+          
+          If Temp_File_Line = "MATE" Then
+            MATE_CheckBox As Boolean = True
+          Endif
+          
+          If Temp_File_Line = "XFCE" Then
+            XFCE_CheckBox As Boolean = True
+          Endif
+          
+          If Temp_File_Line = "Pantheon" Then
+            Pantheon_CheckBox As Boolean = True
+          Endif
+          
+          If Temp_File_Line = "LXDE" Then
+            LXDE_CheckBox As Boolean = True
+          Endif
+          
+        Next
+      Endif
+      
+      'Check OnlyShowIn
+      If Unity_CheckBox = False Or If Cinnamon_CheckBox = False Or If KDE_CheckBox = False Or If GNOME_CheckBox = False Or If RazorQT_CheckBox = False Or If MATE_CheckBox = False Or If XFCE_CheckBox = False Or If Pantheon_CheckBox = False Or If LXDE_CheckBox = False Then
+        All_CheckBox = False
+      Else
+        All_CheckBox = True
+      Endif
+      
     Next
     'Clean
     Temp_File.Clear
@@ -136,7 +188,7 @@ Public Sub Button_Save_Click()
   
   If Not TextBox_Name.Text = "" Then
     If Not TextBox_EXEC.Text = "" Then
-      If Not ListBox_Categories.Count = 0 Then
+      If Not ListBox_Categories.Count = -1 Then
         'Check if file Exist
         If Exist("/home/" & System.User.Name & "/.local/share/applications/" & TextBox_Name.Text & ".desktop") Then
           If Message.Question(MSG_Desktop_File_Exist, "Yes", "No") = 1 Then
@@ -245,7 +297,7 @@ Public Sub Create_Desktop_File()
   XFCE_CheckBox = False
   Pantheon_CheckBox = False
   LXDE_CheckBox = False
-  All_CheckBox = False
+  All_CheckBox = True
   
 Catch
   Message.Error("Error: " & Error.Text)
@@ -254,6 +306,7 @@ End
 
 Public Sub PictureBox1_MouseDown()
   'Open File Dialog
+  
   Dialog.Title = "Select Image"
   Dialog.filter = ["*.jpg;*.jpeg;*.png;*.bmp", "All Files", "*.jpg;*.jpeg", "Joint Photographic Expert Group", "*.png", "Portable Network Graphics", "*.bmp", "Bitmap"]
   'Set Default Path
@@ -347,7 +400,7 @@ Public Sub MenuAbout_About_Click()
   
 End
 
-Public Sub Button_Desktops_Click()  
+Public Sub Button_Desktops_Click()
   
   FOnly.ShowDialog
   

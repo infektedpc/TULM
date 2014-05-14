@@ -11,7 +11,7 @@
     Enabled = False
     Text = ("Unity")
   }
-  { !CheckBox_Gnome CheckBox
+  { !CheckBox_GNOME CheckBox
     MoveScaled(1,5,11,4)
     #Public = True
     Enabled = False

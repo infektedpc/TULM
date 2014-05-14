@@ -1,5 +1,5 @@
 # Gambas Project File 3.0
-# Compiled with Gambas 3.1.1
+# Compiled with Gambas 3.5.3
 Title=TULM
 Startup=FMain
 Icon=tulm128x.png
@@ -16,7 +16,6 @@ Maintainer=Joel Horrell
 Address=infektedpc@gmail.com
 Url=https://github.com/infektedpc/TULM
 License=General Public License
-UseRelease=1
 PackageName=tulm-0.0.4
 Packager=1
 Systems=ubuntu
