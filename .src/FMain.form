@@ -66,7 +66,7 @@
   { Button_EXEC Button
     MoveScaled(39,14,5,4)
     ToolTip = ("Browse for the application.")
-    Picture = Picture["icon:/22/exec"]
+    Picture = Picture["icon:/16/exec"]
   }
   { ComboBox_Categories ComboBox
     MoveScaled(13,20,25,4)
@@ -103,7 +103,7 @@
     Text = ("Terminal")
   }
   { Button_Open Button
-    MoveScaled(17,48,12,4)
+    MoveScaled(18,48,12,4)
     ToolTip = ("Open existing Launcher (.desktop)")
     Text = ("Open")
     Picture = Picture["icon:/16/open"]
@@ -115,9 +115,9 @@
     Picture = Picture["icon:/16/save"]
   }
   { Button_Desktops Button
-    MoveScaled(1,48,14,4)
+    MoveScaled(1,48,15,4)
     ToolTip = ("Desktops you want the application to show in.")
     Text = ("Desktops")
-    Picture = Picture["icon:/22/menu"]
+    Picture = Picture["icon:/16/menu"]
   }
 }
