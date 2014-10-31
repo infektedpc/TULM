@@ -1,7 +1,7 @@
 # Gambas Form File 3.0
 
 { Form Form
-  MoveScaled(0,0,45,57)
+  MoveScaled(0,0,45,56)
   Text = ("TULM - The Universal Launcher Maker")
   Icon = Picture["tulm128x.png"]
   Resizable = False
@@ -103,19 +103,19 @@
     Text = ("Terminal")
   }
   { Button_Open Button
-    MoveScaled(18,48,12,5)
+    MoveScaled(18,48,12,4)
     ToolTip = ("Open existing Launcher (.desktop)")
     Text = ("Open")
     Picture = Picture["icon:/16/open"]
   }
   { Button_Save Button
-    MoveScaled(32,48,12,5)
+    MoveScaled(32,48,12,4)
     ToolTip = ("Save the launcher.")
     Text = ("Save")
     Picture = Picture["icon:/16/save"]
   }
   { Button_Desktops Button
-    MoveScaled(1,48,15,5)
+    MoveScaled(1,48,15,4)
     ToolTip = ("Desktops you want the application to show in.")
     Text = ("Desktops")
     Picture = Picture["icon:/16/menu"]

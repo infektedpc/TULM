@@ -5,6 +5,7 @@ Public Sub Form_Open()
   'Center Window
   FOnly.center
   'Load Checkbox values
+  CheckBox_All.Value = FMain.All_CheckBox
   CheckBox_Unity.Value = FMain.Unity_CheckBox
   CheckBox_Cinnamon.Value = FMain.Cinnamon_CheckBox
   CheckBox_KDE.Value = FMain.KDE_CheckBox
@@ -14,7 +15,6 @@ Public Sub Form_Open()
   CheckBox_XFCE.Value = FMain.XFCE_CheckBox
   CheckBox_Pantheon.Value = FMain.Pantheon_CheckBox
   CheckBox_LXDE.Value = FMain.LXDE_CheckBox
-  CheckBox_All.Value = FMain.All_CheckBox
   
 End
 

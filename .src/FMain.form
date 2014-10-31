@@ -65,7 +65,7 @@
   }
   { Button_EXEC Button
     MoveScaled(39,14,5,4)
-    ToolTip = ("Browse for the application.")
+    ToolTip = ("Browse for the application")
     Picture = Picture["icon:/16/exec"]
   }
   { ComboBox_Categories ComboBox

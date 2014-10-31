@@ -130,39 +130,39 @@ Public Sub Open_Desktop_File()
           'ListBox_Categories.Add(Temp_File_Line)
           
           If Temp_File_Line = "Unity " Then
-            Unity_CheckBox As Boolean = True
+            Unity_CheckBox = True
           Endif
           
           If Temp_File_Line = "Cinnamon"
-            Cinnamon_CheckBox As Boolean = True
+            Cinnamon_CheckBox = True
           Endif
           
           If Temp_File_Line = "KDE" Then
-            KDE_CheckBox As Boolean = True
+            KDE_CheckBox = True
           Endif
           
           If Temp_File_Line = "GNOME" Then
-            GNOME_CheckBox As Boolean = True
+            GNOME_CheckBox = True
           Endif
           
           If Temp_File_Line = "RazorQT" Then
-            RazorQT_CheckBox As Boolean = True
+            RazorQT_CheckBox = True
           Endif
           
           If Temp_File_Line = "MATE" Then
-            MATE_CheckBox As Boolean = True
+            MATE_CheckBox = True
           Endif
           
           If Temp_File_Line = "XFCE" Then
-            XFCE_CheckBox As Boolean = True
+            XFCE_CheckBox = True
           Endif
           
           If Temp_File_Line = "Pantheon" Then
-            Pantheon_CheckBox As Boolean = True
+            Pantheon_CheckBox = True
           Endif
           
           If Temp_File_Line = "LXDE" Then
-            LXDE_CheckBox As Boolean = True
+            LXDE_CheckBox = True
           Endif
           
         Next

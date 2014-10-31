@@ -5,10 +5,7 @@ Count=0
 Count=0
 
 [OpenFile]
-Active=1
-File[1]=".src/FMain.form"
-File[2]=".src/FMain.class:114.11"
-Count=2
+Count=0
 
 [Watches]
 Count=0
